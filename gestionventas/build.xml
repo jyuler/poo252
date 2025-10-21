@@ -1,0 +1,38 @@
+<!-- Archivo Ant para compilar el proyecto -->
+<project name="gestion-ventas" default="compilar" basedir=".">
+    <property file="build.properties"/>
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="target"/>
+    <property name="compiled.dir" value="${build.dir}/bin"/>
+    <property name="dist.dir" value="${build.dir}"/>
+    <property name="lib.dir" value="lib"/>
+
+    <target name="compilar">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+            <!-- <classpath>
+                <pathelement path="${lib.dir}/junit-4.12.jar"/>
+            </classpath> -->
+        </javac>
+    </target>
+
+    <target name="limpiar">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="ejecutar" depends="compilar">
+        <java fork="true" classname="App" failonerror="true">
+            <classpath>
+                <pathelement path="${build.dir}"/>
+            </classpath>
+        </java>
+    </target>    
+    <target name="empaquetar" depends="compilar">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/gestion-ventas.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="App"/>
+            </manifest>
+        </jar>
+    </target>
+</project>

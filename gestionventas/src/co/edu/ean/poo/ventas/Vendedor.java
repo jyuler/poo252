@@ -48,10 +48,6 @@ public class Vendedor {
      */
     public boolean registrarVenta(Venta v) {
         // TODO: implementar este método
-        if ( v == null ) return false;
-        if ( v.fecha().isBefore( fechaIngreso ) ) return false;
-        ventas.add( v );
-        return true;
     }
 
     /**
@@ -65,7 +61,6 @@ public class Vendedor {
      */
     public boolean registrarVenta(LocalDate fechaVenta, int valor) {
         // TODO: implementar este método
-        return registrarVenta( new Venta( fechaVenta, valor ) );
     }
 
     /**

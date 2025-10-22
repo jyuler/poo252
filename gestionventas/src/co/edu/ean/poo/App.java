@@ -13,8 +13,7 @@ public class App {
     public static void main(String[] args) {
         Path pathVendedores = Path.of("data/vendedores.csv");
         Path pathVentas = Path.of("data/ventas.csv");
-        ParseadorVentasVendedores pvv = new co.edu.ean.poo.ventas.datos.Parseador();
-        // ParseadorVentasVendedores pvv = // instancia aquí tu implementación de ParseadorVentasVendedores
+        ParseadorVentasVendedores pvv = // instancia aquí tu implementación de ParseadorVentasVendedores
         try {
             procesarArchivos( pvv, pathVendedores, pathVentas );
         } catch (IOException e) {

@@ -28,12 +28,6 @@ public class CalculadoraVentas {
      */
     public static long totalVentasVendedores( Collection<Vendedor> vendedores, LocalDate fechaInicio, LocalDate fechaFin ) {
         // TODO: implementar este método
-        return vendedores.stream()
-            .filter( v -> v != null )
-            .flatMap( v -> v.getVentas().stream() )
-            .filter( v -> !v.fecha().isBefore( fechaInicio ) && !v.fecha().isAfter( fechaFin ) )
-            .mapToLong( v -> v.valor() )
-            .sum();
     }
 
     /**
@@ -46,13 +40,5 @@ public class CalculadoraVentas {
      */
     public static Vendedor[] topNVendedores( Collection<Vendedor> vendedores, int top, LocalDate fechaInicio, LocalDate fechaFin ) {
         // TODO: implementar este método
-        return vendedores.stream()
-            .filter( v -> v != null )
-            .sorted( (v1, v2) -> Integer.compare(
-                totalVentasVendedor( v2, fechaInicio, fechaFin ),
-                totalVentasVendedor( v1, fechaInicio, fechaFin )
-            ) )
-            .limit( top )
-            .toArray( Vendedor[]::new );
     }
 }

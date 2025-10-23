@@ -1,4 +1,14 @@
 package co.edu.ean.poo;
+/**
+ * Clase principal de la aplicación de gestión de ventas.
+ * <p>
+ * Esta clase contiene el método main que inicia la ejecución del programa y el método
+ * procesarArchivos que realiza las operaciones principales sobre los datos de vendedores y ventas.
+ * </p>
+ *
+ * @author (Tu Nombre)
+ * @version 1.0
+ */
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -10,6 +20,11 @@ import co.edu.ean.poo.ventas.Vendedor;
 import co.edu.ean.poo.ventas.datos.ParseadorVentasVendedores;
 
 public class App {
+    /**
+     * Método principal que inicia la aplicación.
+     *
+     * @param args Argumentos de la línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
         Path pathVendedores = Path.of("data/vendedores.csv");
         Path pathVentas = Path.of("data/ventas.csv");
@@ -21,6 +36,14 @@ public class App {
         }
     }
 
+    /**
+     * Procesa los archivos de vendedores y ventas, y realiza varias consultas sobre los datos.
+     *
+     * @param pvv             Instancia de ParseadorVentasVendedores para parsear los archivos.
+     * @param pathVendedores  Ruta al archivo CSV de vendedores.
+     * @param pathVentas      Ruta al archivo CSV de ventas.
+     * @throws IOException    Si ocurre un error al leer los archivos.
+     */
     public static void procesarArchivos(ParseadorVentasVendedores pvv, Path pathVendedores, Path pathVentas) throws IOException {
         Map<Integer,Vendedor> mapVendedores = pvv.parsearVendedores(pathVendedores);
         pvv.parsearVentas(pathVentas, mapVendedores);

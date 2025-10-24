@@ -55,11 +55,7 @@ public class Tests {
             System.setOut(new PrintStream(new OutputStream() {
                 public void write(int b) throws IOException {}
             }));
-            App.procesarArchivos(
-                new co.edu.ean.poo.ventas.datos.Parseador(),
-                java.nio.file.Path.of("data/archivo_no_existe_vendedores.csv"),
-                java.nio.file.Path.of("data/archivo_no_existe_ventas.csv")
-            );
+            App.main("nonexistent_vendedores.csv", "nonexistent_ventas.csv");
             plr(FALLO);
         } catch (java.io.IOException e) {
             plg(EXITO);
@@ -180,11 +176,7 @@ public class Tests {
         try {
             java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
             System.setOut(new PrintStream(baos));
-            App.procesarArchivos(
-                new co.edu.ean.poo.ventas.datos.Parseador(),
-                java.nio.file.Path.of("data/vendedores.csv"),
-                java.nio.file.Path.of("data/ventas.csv")
-            );
+            App.main("data/vendedores.csv", "data/ventas.csv");
             String salida = baos.toString().trim();
             String[] lineas = salida.split("\n");
             if (lineas.length != expectedLines.length) {

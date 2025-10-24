@@ -26,15 +26,16 @@ public class App {
      *
      * @param args Argumentos de la línea de comandos (no utilizados).
      */
-    public static void main(String[] args) {
+    public static void main(String... args) throws IOException{
         Path pathVendedores = Path.of("data/vendedores.csv");
         Path pathVentas = Path.of("data/ventas.csv");
-        ParseadorVentasVendedores pvv = // instancia aquí tu implementación de ParseadorVentasVendedores
-        try {
-            EjercicioProcesarArchivos.procesarArchivos( pvv, pathVendedores, pathVentas );
-        } catch (IOException e) {
-            System.out.println("Error al procesar los archivos: " + e.getMessage());
+        
+        if ( args.length == 2 ) {
+            pathVendedores = Path.of( args[0] );
+            pathVentas = Path.of( args[1] );
         }
+        ParseadorVentasVendedores pvv = // instancia aquí tu implementación de ParseadorVentasVendedores
+        EjercicioProcesarArchivos.procesarArchivos( pvv, pathVendedores, pathVentas );
     }
 
 }
